@@ -1,0 +1,43 @@
+<div class="row">
+  <h1>Chuck Norris Facts</h1>
+</div>
+<div class="row">
+  <div class="col-12">
+    <label for="categories">Filter selecting one or more (ctrl+click) categories of joke</label>
+    <select (change)="onChange($event.target)" name="categories" id="categories" class="form-control" multiple>
+      <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+    </select>
+  </div>
+</div>
+<div class="row btn-filter-jokes-container">
+  <div class="col-2">
+    <button (click)="filterJokes(categories)" class="btn btn-success btn-block">Filter</button>
+  </div>
+  <div class="col-2">
+    <button (click)="randomJoke()" class="btn btn-primary btn-block">Random</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12" *ngIf="jokes; then jokesList else noJokes"></div>
+  <ng-template #jokesList>
+    <table class="table table-hover table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Jokes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of jokes">
+          <td>
+            <a [routerLink]="['/joke', item.id]">
+              <div class="joke-row">
+                {{ item.joke }}
+              </div>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  <ng-template #noJokes></ng-template>
+</div>

@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-12" *ngIf="joke; then jokeDetail else noJoke"></div>
+  <ng-template #jokeDetail>
+    <div class="col-12">
+      <ul ngModel class="list-group">
+        <li class="list-group-item">
+          <strong>Id:</strong> {{ joke?.id}}</li>
+        <li class="list-group-item">
+          <strong>Joke:</strong> {{ joke?.joke}}</li>
+        <li class="list-group-item">
+          <strong>Categories:</strong> {{ joke?.categories}}</li>
+      </ul>
+    </div>
+  </ng-template>
+  <ng-template #noJoke>
+    <div class="alert alert-primary" role="alert">
+      Loading joke...
+    </div>
+  </ng-template>
+</div>
+<div class="row">
+  <div class="col-12">
+    <a routerLink="/jokes" class="btn btn-primary btn-back">
+      Back
+    </a>
+  </div>
+</div>
